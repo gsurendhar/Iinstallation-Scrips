@@ -21,3 +21,22 @@ su - nexus
 ps -ef | grep nexus
 tail -f /opt/sonatype-work/nexus3/log/nexus.log
 # port is 8081
+#sudo apt install docker.io
+#sudo apt install docker-compose
+
+# docker-compose.yml file for sonatype/nexus
+
+
+version: "2"
+
+services:
+  nexus:
+    image: sonatype/nexus
+    volumes:
+      - "nexus-data:/sonatype-work"
+    ports:
+      - "8081:8081"
+  
+volumes:
+  nexus-data: {}
+# docker-compose up -d
