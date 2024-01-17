@@ -20,6 +20,28 @@ su - nexus
 /opt/nexus-3.64.0-04/bin/nexus start
 ps -ef | grep nexus
 tail -f /opt/sonatype-work/nexus3/log/nexus.log
+
+#adding nexus.service file
+vi /etc/systemd/system/nexus.service
+
+[Unit]
+Description=nexus service
+After=network.target
+
+[Service]
+Type=forking
+LimitNOFILE=65536
+ExecStart=/opt/nexus/bin/nexus start
+ExecStop=/opt/nexus/bin/nexus stop
+User=nexus
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
 # port is 8081
 #sudo apt install docker.io
 #sudo apt install docker-compose
