@@ -26,3 +26,22 @@ provider "aws" {
   region  = "us-west-2"
   profile = "rama"
 }
+
+
+
+
+terraform init       -----> initilize a working directory
+terraform fmt        -----> adjustment formate and style
+terraform validate   -----> validate the configuration
+terraform plan       -----> generate and review execution plan
+terraform apply      -----> execute changes to infrastructure
+terraform destroy    -----> destroy created infrastructure
+
+backend backup setup
+terraform {
+  backend "s3" {
+    bucket = "terraformstate"
+    key    = "statefile/"
+    region = "us-east-1"
+  }
+}
